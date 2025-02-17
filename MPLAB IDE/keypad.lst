@@ -1,0 +1,1915 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.81 build 7503 
+                                                                                               Thu Oct 10 12:23:27 2024
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 7503
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 7503"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F877A
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           # 3 "C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+    43                           	psect config,class=CONFIG,delta=2 ;#
+    44                           # 3 "C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+    45  2007  FF7A               	dw 0xFFFE & 0xFFFB & 0xFFFF & 0xFFFF & 0xFFFF & 0xFF7F & 0xFFFF & 0xFFFF & 0xFFFF ;#
+    46                           	FNCALL	_main,_lcd_init
+    47                           	FNCALL	_main,_keyinit
+    48                           	FNCALL	_main,_cmd
+    49                           	FNCALL	_main,_show
+    50                           	FNCALL	_main,_key
+    51                           	FNCALL	_main,_dat
+    52                           	FNCALL	_show,_dat
+    53                           	FNCALL	_lcd_init,_cmd
+    54                           	FNCALL	_dat,_lcd_delay
+    55                           	FNCALL	_cmd,_lcd_delay
+    56                           	FNROOT	_main
+    57                           	global	_keypad
+    58                           psect	idataBANK0,class=CODE,space=0,delta=2
+    59                           global __pidataBANK0
+    60  05AF                     __pidataBANK0:
+    61                           	file	"C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+    62                           	line	27
+    63                           
+    64                           ;initializer for _keypad
+    65  05AF  3437               	retlw	037h
+    66  05B0  3438               	retlw	038h
+    67  05B1  3439               	retlw	039h
+    68  05B2  342F               	retlw	02Fh
+    69  05B3  3434               	retlw	034h
+    70  05B4  3435               	retlw	035h
+    71  05B5  3436               	retlw	036h
+    72  05B6  342A               	retlw	02Ah
+    73  05B7  3431               	retlw	031h
+    74  05B8  3432               	retlw	032h
+    75  05B9  3433               	retlw	033h
+    76  05BA  342D               	retlw	02Dh
+    77  05BB  3443               	retlw	043h
+    78  05BC  3430               	retlw	030h
+    79  05BD  343D               	retlw	03Dh
+    80  05BE  342B               	retlw	02Bh
+    81                           	global	_colloc
+    82                           	global	_rowloc
+    83                           	global	_PORTC
+    84  0007                     _PORTC	set	7
+    85                           	global	_PORTD
+    86  0008                     _PORTD	set	8
+    87                           	global	_RC0
+    88  0038                     _RC0	set	56
+    89                           	global	_RC1
+    90  0039                     _RC1	set	57
+    91                           	global	_RC2
+    92  003A                     _RC2	set	58
+    93                           	global	_RC3
+    94  003B                     _RC3	set	59
+    95                           	global	_RC4
+    96  003C                     _RC4	set	60
+    97                           	global	_RC5
+    98  003D                     _RC5	set	61
+    99                           	global	_RC6
+   100  003E                     _RC6	set	62
+   101                           	global	_RC7
+   102  003F                     _RC7	set	63
+   103                           	global	_RD2
+   104  0042                     _RD2	set	66
+   105                           	global	_RD3
+   106  0043                     _RD3	set	67
+   107                           	global	_OPTION_REG
+   108  0081                     _OPTION_REG	set	129
+   109                           	global	_TRISC
+   110  0087                     _TRISC	set	135
+   111                           	global	_TRISD
+   112  0088                     _TRISD	set	136
+   113                           psect	strings,class=STRING,delta=2
+   114                           global __pstrings
+   115  0003                     __pstrings:
+   116                           ;	global	stringdir,stringtab,__stringbase
+   117  0003                     stringtab:
+   118                           ;	String table - string pointers are 1 byte each
+   119  0003                     stringcode:stringdir:
+      + 0003                     stringdir:	
+   120  0003  3000               movlw high(stringdir)
+   121  0004  008A               movwf pclath
+   122  0005  0804               movf fsr,w
+   123  0006  0A84               incf fsr
+   124  0007  0782               	addwf pc
+   125  0008                     __stringbase:
+   126  0008  3400               	retlw	0
+   127                           psect	strings
+   128                           	
+   129  0009                     STR_1:	
+   130  0009  3445               	retlw	69	;'E'
+   131  000A  346E               	retlw	110	;'n'
+   132  000B  3474               	retlw	116	;'t'
+   133  000C  3465               	retlw	101	;'e'
+   134  000D  3472               	retlw	114	;'r'
+   135  000E  3420               	retlw	32	;' '
+   136  000F  3474               	retlw	116	;'t'
+   137  0010  3468               	retlw	104	;'h'
+   138  0011  3465               	retlw	101	;'e'
+   139  0012  3420               	retlw	32	;' '
+   140  0013  344B               	retlw	75	;'K'
+   141  0014  3465               	retlw	101	;'e'
+   142  0015  3479               	retlw	121	;'y'
+   143  0016  3420               	retlw	32	;' '
+   144  0017  3400               	retlw	0
+   145                           psect	strings
+   146                           	file	"keypad.as"
+   147                           	line	#
+   148                           psect cinit,class=CODE,delta=2
+   149                           global start_initialization
+   150  05D0                     start_initialization:
+   151                           
+   152                           psect	bssCOMMON,class=COMMON,space=1
+   153                           global __pbssCOMMON
+   154  0079                     __pbssCOMMON:
+   155  0079                     _colloc:
+   156  0079                            ds      1
+   157                           
+   158  007A                     _rowloc:
+   159  007A                            ds      1
+   160                           
+   161                           psect	dataBANK0,class=BANK0,space=1
+   162                           global __pdataBANK0
+   163  0020                     __pdataBANK0:
+   164                           	file	"C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+   165  0020                     _keypad:
+   166  0020                            ds      16
+   167                           
+   168                           ; Clear objects allocated to COMMON
+   169                           psect cinit,class=CODE,delta=2
+   170  05D0  01F9               	clrf	((__pbssCOMMON)+0)&07Fh
+   171  05D1  01FA               	clrf	((__pbssCOMMON)+1)&07Fh
+   172                           global btemp
+   173                           psect inittext,class=CODE,delta=2
+   174                           global init_fetch,btemp
+   175                           ;	Called with low address in FSR and high address in W
+   176  05BF                     init_fetch:
+   177  05BF  087E               	movf btemp,w
+   178  05C0  008A               	movwf pclath
+   179  05C1  087F               	movf btemp+1,w
+   180  05C2  0082               	movwf pc
+   181                           global init_ram
+   182                           ;Called with:
+   183                           ;	high address of idata address in btemp 
+   184                           ;	low address of idata address in btemp+1 
+   185                           ;	low address of data in FSR
+   186                           ;	high address + 1 of data in btemp-1
+   187  05C3                     init_ram:
+   188  05C3  25BF  120A  118A   	fcall init_fetch
+   189  05C6  0080               	movwf indf,f
+   190  05C7  0A84               	incf fsr,f
+   191  05C8  0804               	movf fsr,w
+   192  05C9  067D               	xorwf btemp-1,w
+   193  05CA  1903               	btfsc status,2
+   194  05CB  3400               	retlw 0
+   195  05CC  0AFF               	incf btemp+1,f
+   196  05CD  1903               	btfsc status,2
+   197  05CE  0AFE               	incf btemp,f
+   198  05CF  2DC3               	goto init_ram
+   199                           ; Initialize objects allocated to BANK0
+   200                           psect cinit,class=CODE,delta=2
+   201                           global init_ram, __pidataBANK0
+   202  05D2  1383               	bcf	status, 7	;select IRP bank0
+   203  05D3  3030               	movlw low(__pdataBANK0+16)
+   204  05D4  00FD               	movwf btemp-1,f
+   205  05D5  3005               	movlw high(__pidataBANK0)
+   206  05D6  00FE               	movwf btemp,f
+   207  05D7  30AF               	movlw low(__pidataBANK0)
+   208  05D8  00FF               	movwf btemp+1,f
+   209  05D9  3020               	movlw low(__pdataBANK0)
+   210  05DA  0084               	movwf fsr,f
+   211  05DB  120A  118A  25C3   	fcall init_ram
+              120A  118A         
+   212                           psect cinit,class=CODE,delta=2
+   213                           global end_of_initialization
+   214                           
+   215                           ;End of C runtime variable initialization code
+   216                           
+   217  05E0                     end_of_initialization:
+   218  05E0  0183               clrf status
+   219  05E1  120A  118A  2E42   ljmp _main	;jump to C main() function
+   220                           psect	cstackCOMMON,class=COMMON,space=1
+   221                           global __pcstackCOMMON
+   222  0070                     __pcstackCOMMON:
+   223                           	global	?_lcd_init
+   224  0070                     ?_lcd_init:	; 0 bytes @ 0x0
+   225                           	global	?_keyinit
+   226  0070                     ?_keyinit:	; 0 bytes @ 0x0
+   227                           	global	??_keyinit
+   228  0070                     ??_keyinit:	; 0 bytes @ 0x0
+   229                           	global	?_cmd
+   230  0070                     ?_cmd:	; 0 bytes @ 0x0
+   231                           	global	?_show
+   232  0070                     ?_show:	; 0 bytes @ 0x0
+   233                           	global	??_key
+   234  0070                     ??_key:	; 0 bytes @ 0x0
+   235                           	global	?_dat
+   236  0070                     ?_dat:	; 0 bytes @ 0x0
+   237                           	global	?_lcd_delay
+   238  0070                     ?_lcd_delay:	; 0 bytes @ 0x0
+   239                           	global	??_lcd_delay
+   240  0070                     ??_lcd_delay:	; 0 bytes @ 0x0
+   241                           	global	?_main
+   242  0070                     ?_main:	; 0 bytes @ 0x0
+   243                           	global	?_key
+   244  0070                     ?_key:	; 1 bytes @ 0x0
+   245                           	global	lcd_delay@lcd_delay
+   246  0070                     lcd_delay@lcd_delay:	; 2 bytes @ 0x0
+   247  0070                     	ds	2
+   248                           	global	??_cmd
+   249  0072                     ??_cmd:	; 0 bytes @ 0x2
+   250                           	global	??_dat
+   251  0072                     ??_dat:	; 0 bytes @ 0x2
+   252  0072                     	ds	2
+   253                           	global	cmd@a
+   254  0074                     cmd@a:	; 1 bytes @ 0x4
+   255                           	global	dat@b
+   256  0074                     dat@b:	; 1 bytes @ 0x4
+   257  0074                     	ds	1
+   258                           	global	??_lcd_init
+   259  0075                     ??_lcd_init:	; 0 bytes @ 0x5
+   260                           	global	??_show
+   261  0075                     ??_show:	; 0 bytes @ 0x5
+   262  0075                     	ds	1
+   263                           	global	show@s
+   264  0076                     show@s:	; 1 bytes @ 0x6
+   265  0076                     	ds	1
+   266                           	global	??_main
+   267  0077                     ??_main:	; 0 bytes @ 0x7
+   268  0077                     	ds	1
+   269                           	global	main@b
+   270  0078                     main@b:	; 1 bytes @ 0x8
+   271  0078                     	ds	1
+   272 ;;Data sizes: Strings 15, constant 0, data 16, bss 2, persistent 0 stack 0
+   273 ;;Auto spaces:   Size  Autos    Used
+   274 ;; COMMON          14      9      11
+   275 ;; BANK0           80      0      16
+   276 ;; BANK1           80      0       0
+   277 ;; BANK3           96      0       0
+   278 ;; BANK2           96      0       0
+   279                           
+   280 ;;
+   281 ;; Pointer list with targets:
+   282                           
+   283 ;; show@s	PTR unsigned char  size(1) Largest target is 15
+   284 ;;		 -> STR_1(CODE[15]), 
+   285 ;;
+   286                           
+   287                           
+   288 ;;
+   289 ;; Critical Paths under _main in COMMON
+   290 ;;
+   291 ;;   _main->_show
+   292 ;;   _show->_dat
+   293 ;;   _lcd_init->_cmd
+   294 ;;   _dat->_lcd_delay
+   295 ;;   _cmd->_lcd_delay
+   296 ;;
+   297 ;; Critical Paths under _main in BANK0
+   298 ;;
+   299 ;;   None.
+   300 ;;
+   301 ;; Critical Paths under _main in BANK1
+   302 ;;
+   303 ;;   None.
+   304 ;;
+   305 ;; Critical Paths under _main in BANK3
+   306 ;;
+   307 ;;   None.
+   308 ;;
+   309 ;; Critical Paths under _main in BANK2
+   310 ;;
+   311 ;;   None.
+   312                           
+   313 ;;
+   314 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+   315 ;;
+   316                           
+   317 ;;
+   318 ;;Call Graph Tables:
+   319 ;;
+   320 ;; ---------------------------------------------------------------------------------
+   321 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   322 ;; ---------------------------------------------------------------------------------
+   323 ;; (0) _main                                                 4     4      0     285
+   324 ;;                                              7 COMMON     2     2      0
+   325 ;;                           _lcd_init
+   326 ;;                            _keyinit
+   327 ;;                                _cmd
+   328 ;;                               _show
+   329 ;;                                _key
+   330 ;;                                _dat
+   331 ;; ---------------------------------------------------------------------------------
+   332 ;; (1) _show                                                 2     2      0      90
+   333 ;;                                              5 COMMON     2     2      0
+   334 ;;                                _dat
+   335 ;; ---------------------------------------------------------------------------------
+   336 ;; (1) _lcd_init                                             0     0      0      60
+   337 ;;                                _cmd
+   338 ;; ---------------------------------------------------------------------------------
+   339 ;; (1) _dat                                                  3     3      0      60
+   340 ;;                                              2 COMMON     3     3      0
+   341 ;;                          _lcd_delay
+   342 ;; ---------------------------------------------------------------------------------
+   343 ;; (1) _cmd                                                  3     3      0      60
+   344 ;;                                              2 COMMON     3     3      0
+   345 ;;                          _lcd_delay
+   346 ;; ---------------------------------------------------------------------------------
+   347 ;; (2) _lcd_delay                                            2     2      0      30
+   348 ;;                                              0 COMMON     2     2      0
+   349 ;; ---------------------------------------------------------------------------------
+   350 ;; (1) _key                                                  3     3      0       0
+   351 ;;                                              0 COMMON     3     3      0
+   352 ;; ---------------------------------------------------------------------------------
+   353 ;; (1) _keyinit                                              1     1      0       0
+   354 ;;                                              0 COMMON     1     1      0
+   355 ;; ---------------------------------------------------------------------------------
+   356 ;; Estimated maximum stack depth 2
+   357 ;; ---------------------------------------------------------------------------------
+   358                           
+   359 ;; Call Graph Graphs:
+   360                           
+   361 ;; _main (ROOT)
+   362 ;;   _lcd_init
+   363 ;;     _cmd
+   364 ;;       _lcd_delay
+   365 ;;   _keyinit
+   366 ;;   _cmd
+   367 ;;     _lcd_delay
+   368 ;;   _show
+   369 ;;     _dat
+   370 ;;       _lcd_delay
+   371 ;;   _key
+   372 ;;   _dat
+   373 ;;     _lcd_delay
+   374 ;;
+   375                           
+   376 ;; Address spaces:
+   377                           
+   378 ;;Name               Size   Autos  Total    Cost      Usage
+   379 ;;BANK3               60      0       0       9        0.0%
+   380 ;;BITBANK3            60      0       0       8        0.0%
+   381 ;;SFR3                 0      0       0       4        0.0%
+   382 ;;BITSFR3              0      0       0       4        0.0%
+   383 ;;BANK2               60      0       0      11        0.0%
+   384 ;;BITBANK2            60      0       0      10        0.0%
+   385 ;;SFR2                 0      0       0       5        0.0%
+   386 ;;BITSFR2              0      0       0       5        0.0%
+   387 ;;SFR1                 0      0       0       2        0.0%
+   388 ;;BITSFR1              0      0       0       2        0.0%
+   389 ;;BANK1               50      0       0       7        0.0%
+   390 ;;BITBANK1            50      0       0       6        0.0%
+   391 ;;CODE                 0      0       0       0        0.0%
+   392 ;;DATA                 0      0      1E      12        0.0%
+   393 ;;ABS                  0      0      1B       3        0.0%
+   394 ;;NULL                 0      0       0       0        0.0%
+   395 ;;STACK                0      0       3       2        0.0%
+   396 ;;BANK0               50      0      10       5       20.0%
+   397 ;;BITBANK0            50      0       0       4        0.0%
+   398 ;;SFR0                 0      0       0       1        0.0%
+   399 ;;BITSFR0              0      0       0       1        0.0%
+   400 ;;COMMON               E      9       B       1       78.6%
+   401 ;;BITCOMMON            E      0       0       0        0.0%
+   402 ;;EEDATA             100      0       0       0        0.0%
+   403                           
+   404                           	global	_main
+   405                           psect	maintext,global,class=CODE,delta=2
+   406                           global __pmaintext
+   407  0642                     __pmaintext:
+   408                           
+   409 ;; *************** function _main *****************
+   410 ;; Defined at:
+   411 ;;		line 31 in file "C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+   412 ;; Parameters:    Size  Location     Type
+   413 ;;		None
+   414 ;; Auto vars:     Size  Location     Type
+   415 ;;  i               2    0        unsigned int 
+   416 ;;  b               1    8[COMMON] unsigned char 
+   417 ;; Return value:  Size  Location     Type
+   418 ;;		None               void
+   419 ;; Registers used:
+   420 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   421 ;; Tracked objects:
+   422 ;;		On entry : 17F/0
+   423 ;;		On exit  : 0/0
+   424 ;;		Unchanged: 0/0
+   425 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   426 ;;      Params:         0       0       0       0       0
+   427 ;;      Locals:         1       0       0       0       0
+   428 ;;      Temps:          1       0       0       0       0
+   429 ;;      Totals:         2       0       0       0       0
+   430 ;;Total ram usage:        2 bytes
+   431 ;; Hardware stack levels required when called:    3
+   432 ;; This function calls:
+   433 ;;		_lcd_init
+   434 ;;		_keyinit
+   435 ;;		_cmd
+   436 ;;		_show
+   437 ;;		_key
+   438 ;;		_dat
+   439 ;; This function is called by:
+   440 ;;		Startup code after reset
+   441 ;; This function uses a non-reentrant model
+   442 ;;
+   443                           psect	maintext
+   444                           	file	"C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+   445                           	line	31
+   446                           	global	__size_of_main
+   447  0033                     	__size_of_main	equ	__end_of_main-_main
+   448                           	
+   449  0642                     _main:	
+   450                           	opt	stack 5
+   451                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   452                           	line	33
+   453                           	
+   454  0642                     l2051:	
+   455                           ;pickeypad.c: 32: unsigned int i;
+   456                           ;pickeypad.c: 33: TRISD=0;
+   457  0642  1683               	bsf	status, 5	;RP0=1, select bank1
+   458  0643  1303               	bcf	status, 6	;RP1=0, select bank1
+   459  0644  0188               	clrf	(136)^080h	;volatile
+   460                           	line	34
+   461                           	
+   462  0645                     l2053:	
+   463                           ;pickeypad.c: 34: lcd_init();
+   464  0645  120A  118A  2602   	fcall	_lcd_init
+              120A  118A         
+   465                           	line	35
+   466                           	
+   467  064A                     l2055:	
+   468                           ;pickeypad.c: 35: keyinit();
+   469  064A  120A  118A  25A6   	fcall	_keyinit
+              120A  118A         
+   470                           	line	37
+   471                           	
+   472  064F                     l2057:	
+   473                           ;pickeypad.c: 36: unsigned char b;
+   474                           ;pickeypad.c: 37: cmd(0x80);
+   475  064F  3080               	movlw	(080h)
+   476  0650  120A  118A  2675   	fcall	_cmd
+              120A  118A         
+   477                           	line	38
+   478                           	
+   479  0655                     l2059:	
+   480                           ;pickeypad.c: 38: show("Enter the Key ");
+   481  0655  3001               	movlw	((STR_1-__stringbase))&0ffh
+   482  0656  120A  118A  2621   	fcall	_show
+              120A  118A         
+   483  065B  2E5C               	goto	l2061
+   484                           	line	39
+   485                           ;pickeypad.c: 39: while(1)
+   486                           	
+   487  065C                     l705:	
+   488                           	line	41
+   489                           	
+   490  065C                     l2061:	
+   491                           ;pickeypad.c: 40: {
+   492                           ;pickeypad.c: 41: cmd(0xc7);
+   493  065C  30C7               	movlw	(0C7h)
+   494  065D  120A  118A  2675   	fcall	_cmd
+              120A  118A         
+   495                           	line	42
+   496                           	
+   497  0662                     l2063:	
+   498                           ;pickeypad.c: 42: b=key();
+   499  0662  120A  118A  26F1   	fcall	_key
+              120A  118A         
+   500  0667  00F7               	movwf	(??_main+0)+0
+   501  0668  0877               	movf	(??_main+0)+0,w
+   502  0669  00F8               	movwf	(main@b)
+   503                           	line	43
+   504                           	
+   505  066A                     l2065:	
+   506                           ;pickeypad.c: 43: dat(b);
+   507  066A  0878               	movf	(main@b),w
+   508  066B  120A  118A  26B3   	fcall	_dat
+              120A  118A         
+   509  0670  2E5C               	goto	l2061
+   510                           	line	45
+   511                           	
+   512  0671                     l706:	
+   513                           	line	39
+   514  0671  2E5C               	goto	l2061
+   515                           	
+   516  0672                     l707:	
+   517                           	line	46
+   518                           	
+   519  0672                     l708:	
+   520                           	global	start
+   521  0672  120A  118A  2800   	ljmp	start
+   522                           	opt stack 0
+   523                           GLOBAL	__end_of_main
+   524  0675                     	__end_of_main:
+   525 ;; =============== function _main ends ============
+   526                           
+   527                           	signat	_main,88
+   528                           	global	_show
+   529                           psect	text115,local,class=CODE,delta=2
+   530                           global __ptext115
+   531  0621                     __ptext115:
+   532                           
+   533 ;; *************** function _show *****************
+   534 ;; Defined at:
+   535 ;;		line 92 in file "C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+   536 ;; Parameters:    Size  Location     Type
+   537 ;;  s               1    wreg     PTR unsigned char 
+   538 ;;		 -> STR_1(15), 
+   539 ;; Auto vars:     Size  Location     Type
+   540 ;;  s               1    6[COMMON] PTR unsigned char 
+   541 ;;		 -> STR_1(15), 
+   542 ;; Return value:  Size  Location     Type
+   543 ;;		None               void
+   544 ;; Registers used:
+   545 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   546 ;; Tracked objects:
+   547 ;;		On entry : 0/0
+   548 ;;		On exit  : 0/0
+   549 ;;		Unchanged: 0/0
+   550 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   551 ;;      Params:         0       0       0       0       0
+   552 ;;      Locals:         1       0       0       0       0
+   553 ;;      Temps:          1       0       0       0       0
+   554 ;;      Totals:         2       0       0       0       0
+   555 ;;Total ram usage:        2 bytes
+   556 ;; Hardware stack levels used:    1
+   557 ;; Hardware stack levels required when called:    2
+   558 ;; This function calls:
+   559 ;;		_dat
+   560 ;; This function is called by:
+   561 ;;		_main
+   562 ;; This function uses a non-reentrant model
+   563 ;;
+   564                           psect	text115
+   565                           	file	"C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+   566                           	line	92
+   567                           	global	__size_of_show
+   568  0021                     	__size_of_show	equ	__end_of_show-_show
+   569                           	
+   570  0621                     _show:	
+   571                           	opt	stack 5
+   572                           ; Regs used in _show: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   573                           ;show@s stored from wreg
+   574  0621  00F6               	movwf	(show@s)
+   575                           	line	93
+   576                           	
+   577  0622                     l2043:	
+   578                           ;pickeypad.c: 93: while(*s) {
+   579  0622  2E34               	goto	l2049
+   580                           	
+   581  0623                     l721:	
+   582                           	line	94
+   583                           	
+   584  0623                     l2045:	
+   585                           ;pickeypad.c: 94: dat(*s++);
+   586  0623  0876               	movf	(show@s),w
+   587  0624  0084               	movwf	fsr0
+   588  0625  120A  118A  2003   	fcall	stringdir
+              120A  118A         
+   589  062A  120A  118A  26B3   	fcall	_dat
+              120A  118A         
+   590                           	
+   591  062F                     l2047:	
+   592  062F  3001               	movlw	(01h)
+   593  0630  00F5               	movwf	(??_show+0)+0
+   594  0631  0875               	movf	(??_show+0)+0,w
+   595  0632  07F6               	addwf	(show@s),f
+   596  0633  2E34               	goto	l2049
+   597                           	line	95
+   598                           	
+   599  0634                     l720:	
+   600                           	line	93
+   601                           	
+   602  0634                     l2049:	
+   603  0634  0876               	movf	(show@s),w
+   604  0635  0084               	movwf	fsr0
+   605  0636  120A  118A  2003   	fcall	stringdir
+              120A  118A         
+   606  063B  3800               	iorlw	0
+   607  063C  1D03               	skipz
+   608  063D  2E3F               	goto	u2661
+   609  063E  2E40               	goto	u2660
+   610  063F                     u2661:
+   611  063F  2E23               	goto	l2045
+   612  0640                     u2660:
+   613  0640  2E41               	goto	l723
+   614                           	
+   615  0641                     l722:	
+   616                           	line	96
+   617                           	
+   618  0641                     l723:	
+   619  0641  0008               	return
+   620                           	opt stack 0
+   621                           GLOBAL	__end_of_show
+   622  0642                     	__end_of_show:
+   623 ;; =============== function _show ends ============
+   624                           
+   625                           	signat	_show,4216
+   626                           	global	_lcd_init
+   627                           psect	text116,local,class=CODE,delta=2
+   628                           global __ptext116
+   629  0602                     __ptext116:
+   630                           
+   631 ;; *************** function _lcd_init *****************
+   632 ;; Defined at:
+   633 ;;		line 49 in file "C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+   634 ;; Parameters:    Size  Location     Type
+   635 ;;		None
+   636 ;; Auto vars:     Size  Location     Type
+   637 ;;		None
+   638 ;; Return value:  Size  Location     Type
+   639 ;;		None               void
+   640 ;; Registers used:
+   641 ;;		wreg, status,2, status,0, pclath, cstack
+   642 ;; Tracked objects:
+   643 ;;		On entry : 0/0
+   644 ;;		On exit  : 0/0
+   645 ;;		Unchanged: 0/0
+   646 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   647 ;;      Params:         0       0       0       0       0
+   648 ;;      Locals:         0       0       0       0       0
+   649 ;;      Temps:          0       0       0       0       0
+   650 ;;      Totals:         0       0       0       0       0
+   651 ;;Total ram usage:        0 bytes
+   652 ;; Hardware stack levels used:    1
+   653 ;; Hardware stack levels required when called:    2
+   654 ;; This function calls:
+   655 ;;		_cmd
+   656 ;; This function is called by:
+   657 ;;		_main
+   658 ;; This function uses a non-reentrant model
+   659 ;;
+   660                           psect	text116
+   661                           	file	"C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+   662                           	line	49
+   663                           	global	__size_of_lcd_init
+   664  001F                     	__size_of_lcd_init	equ	__end_of_lcd_init-_lcd_init
+   665                           	
+   666  0602                     _lcd_init:	
+   667                           	opt	stack 5
+   668                           ; Regs used in _lcd_init: [wreg+status,2+status,0+pclath+cstack]
+   669                           	line	50
+   670                           	
+   671  0602                     l2041:	
+   672                           ;pickeypad.c: 50: cmd(0x02);
+   673  0602  3002               	movlw	(02h)
+   674  0603  120A  118A  2675   	fcall	_cmd
+              120A  118A         
+   675                           	line	51
+   676                           ;pickeypad.c: 51: cmd(0x28);
+   677  0608  3028               	movlw	(028h)
+   678  0609  120A  118A  2675   	fcall	_cmd
+              120A  118A         
+   679                           	line	52
+   680                           ;pickeypad.c: 52: cmd(0x0e);
+   681  060E  300E               	movlw	(0Eh)
+   682  060F  120A  118A  2675   	fcall	_cmd
+              120A  118A         
+   683                           	line	53
+   684                           ;pickeypad.c: 53: cmd(0x06);
+   685  0614  3006               	movlw	(06h)
+   686  0615  120A  118A  2675   	fcall	_cmd
+              120A  118A         
+   687                           	line	54
+   688                           ;pickeypad.c: 54: cmd(0x80);
+   689  061A  3080               	movlw	(080h)
+   690  061B  120A  118A  2675   	fcall	_cmd
+              120A  118A         
+   691                           	line	55
+   692                           	
+   693  0620                     l711:	
+   694  0620  0008               	return
+   695                           	opt stack 0
+   696                           GLOBAL	__end_of_lcd_init
+   697  0621                     	__end_of_lcd_init:
+   698 ;; =============== function _lcd_init ends ============
+   699                           
+   700                           	signat	_lcd_init,88
+   701                           	global	_dat
+   702                           psect	text117,local,class=CODE,delta=2
+   703                           global __ptext117
+   704  06B3                     __ptext117:
+   705                           
+   706 ;; *************** function _dat *****************
+   707 ;; Defined at:
+   708 ;;		line 75 in file "C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+   709 ;; Parameters:    Size  Location     Type
+   710 ;;  b               1    wreg     unsigned char 
+   711 ;; Auto vars:     Size  Location     Type
+   712 ;;  b               1    4[COMMON] unsigned char 
+   713 ;; Return value:  Size  Location     Type
+   714 ;;		None               void
+   715 ;; Registers used:
+   716 ;;		wreg, status,2, status,0, pclath, cstack
+   717 ;; Tracked objects:
+   718 ;;		On entry : 0/0
+   719 ;;		On exit  : 0/0
+   720 ;;		Unchanged: 0/0
+   721 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   722 ;;      Params:         0       0       0       0       0
+   723 ;;      Locals:         1       0       0       0       0
+   724 ;;      Temps:          2       0       0       0       0
+   725 ;;      Totals:         3       0       0       0       0
+   726 ;;Total ram usage:        3 bytes
+   727 ;; Hardware stack levels used:    1
+   728 ;; Hardware stack levels required when called:    1
+   729 ;; This function calls:
+   730 ;;		_lcd_delay
+   731 ;; This function is called by:
+   732 ;;		_main
+   733 ;;		_show
+   734 ;; This function uses a non-reentrant model
+   735 ;;
+   736                           psect	text117
+   737                           	file	"C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+   738                           	line	75
+   739                           	global	__size_of_dat
+   740  003E                     	__size_of_dat	equ	__end_of_dat-_dat
+   741                           	
+   742  06B3                     _dat:	
+   743                           	opt	stack 6
+   744                           ; Regs used in _dat: [wreg+status,2+status,0+pclath+cstack]
+   745                           ;dat@b stored from wreg
+   746  06B3  00F4               	movwf	(dat@b)
+   747                           	line	76
+   748                           	
+   749  06B4                     l2021:	
+   750                           ;pickeypad.c: 76: RD2=1;
+   751  06B4  1283               	bcf	status, 5	;RP0=0, select bank0
+   752  06B5  1303               	bcf	status, 6	;RP1=0, select bank0
+   753  06B6  1508               	bsf	(66/8),(66)&7
+   754                           	line	77
+   755                           	
+   756  06B7                     l2023:	
+   757                           ;pickeypad.c: 77: PORTD&=0x0F;
+   758  06B7  300F               	movlw	(0Fh)
+   759  06B8  00F2               	movwf	(??_dat+0)+0
+   760  06B9  0872               	movf	(??_dat+0)+0,w
+   761  06BA  0588               	andwf	(8),f	;volatile
+   762                           	line	78
+   763                           ;pickeypad.c: 78: PORTD|=(b&0xf0);
+   764  06BB  0874               	movf	(dat@b),w
+   765  06BC  39F0               	andlw	0F0h
+   766  06BD  00F2               	movwf	(??_dat+0)+0
+   767  06BE  0872               	movf	(??_dat+0)+0,w
+   768  06BF  0488               	iorwf	(8),f	;volatile
+   769                           	line	79
+   770                           	
+   771  06C0                     l2025:	
+   772                           ;pickeypad.c: 79: RD3=1;
+   773  06C0  1588               	bsf	(67/8),(67)&7
+   774                           	line	80
+   775                           	
+   776  06C1                     l2027:	
+   777                           ;pickeypad.c: 80: lcd_delay();
+   778  06C1  120A  118A  25E4   	fcall	_lcd_delay
+              120A  118A         
+   779                           	line	81
+   780                           	
+   781  06C6                     l2029:	
+   782                           ;pickeypad.c: 81: RD3=0;
+   783  06C6  1283               	bcf	status, 5	;RP0=0, select bank0
+   784  06C7  1303               	bcf	status, 6	;RP1=0, select bank0
+   785  06C8  1188               	bcf	(67/8),(67)&7
+   786                           	line	82
+   787                           	
+   788  06C9                     l2031:	
+   789                           ;pickeypad.c: 82: lcd_delay();
+   790  06C9  120A  118A  25E4   	fcall	_lcd_delay
+              120A  118A         
+   791                           	line	83
+   792                           ;pickeypad.c: 83: PORTD&=0x0f;
+   793  06CE  300F               	movlw	(0Fh)
+   794  06CF  00F2               	movwf	(??_dat+0)+0
+   795  06D0  0872               	movf	(??_dat+0)+0,w
+   796  06D1  1283               	bcf	status, 5	;RP0=0, select bank0
+   797  06D2  1303               	bcf	status, 6	;RP1=0, select bank0
+   798  06D3  0588               	andwf	(8),f	;volatile
+   799                           	line	84
+   800                           ;pickeypad.c: 84: PORTD|=(b<<4&0xf0);
+   801  06D4  0874               	movf	(dat@b),w
+   802  06D5  00F2               	movwf	(??_dat+0)+0
+   803  06D6  3003               	movlw	(04h)-1
+   804  06D7                     u2655:
+   805  06D7  1003               	clrc
+   806  06D8  0DF2               	rlf	(??_dat+0)+0,f
+   807  06D9  3EFF               	addlw	-1
+   808  06DA  1D03               	skipz
+   809  06DB  2ED7               	goto	u2655
+   810  06DC  1003               	clrc
+   811  06DD  0D72               	rlf	(??_dat+0)+0,w
+   812  06DE  39F0               	andlw	0F0h
+   813  06DF  00F3               	movwf	(??_dat+1)+0
+   814  06E0  0873               	movf	(??_dat+1)+0,w
+   815  06E1  0488               	iorwf	(8),f	;volatile
+   816                           	line	85
+   817                           	
+   818  06E2                     l2033:	
+   819                           ;pickeypad.c: 85: RD3=1;
+   820  06E2  1588               	bsf	(67/8),(67)&7
+   821                           	line	86
+   822                           	
+   823  06E3                     l2035:	
+   824                           ;pickeypad.c: 86: lcd_delay();
+   825  06E3  120A  118A  25E4   	fcall	_lcd_delay
+              120A  118A         
+   826                           	line	87
+   827                           	
+   828  06E8                     l2037:	
+   829                           ;pickeypad.c: 87: RD3=0;
+   830  06E8  1283               	bcf	status, 5	;RP0=0, select bank0
+   831  06E9  1303               	bcf	status, 6	;RP1=0, select bank0
+   832  06EA  1188               	bcf	(67/8),(67)&7
+   833                           	line	88
+   834                           	
+   835  06EB                     l2039:	
+   836                           ;pickeypad.c: 88: lcd_delay();
+   837  06EB  120A  118A  25E4   	fcall	_lcd_delay
+              120A  118A         
+   838                           	line	89
+   839                           	
+   840  06F0                     l717:	
+   841  06F0  0008               	return
+   842                           	opt stack 0
+   843                           GLOBAL	__end_of_dat
+   844  06F1                     	__end_of_dat:
+   845 ;; =============== function _dat ends ============
+   846                           
+   847                           	signat	_dat,4216
+   848                           	global	_cmd
+   849                           psect	text118,local,class=CODE,delta=2
+   850                           global __ptext118
+   851  0675                     __ptext118:
+   852                           
+   853 ;; *************** function _cmd *****************
+   854 ;; Defined at:
+   855 ;;		line 58 in file "C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+   856 ;; Parameters:    Size  Location     Type
+   857 ;;  a               1    wreg     unsigned char 
+   858 ;; Auto vars:     Size  Location     Type
+   859 ;;  a               1    4[COMMON] unsigned char 
+   860 ;; Return value:  Size  Location     Type
+   861 ;;		None               void
+   862 ;; Registers used:
+   863 ;;		wreg, status,2, status,0, pclath, cstack
+   864 ;; Tracked objects:
+   865 ;;		On entry : 0/0
+   866 ;;		On exit  : 0/0
+   867 ;;		Unchanged: 0/0
+   868 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   869 ;;      Params:         0       0       0       0       0
+   870 ;;      Locals:         1       0       0       0       0
+   871 ;;      Temps:          2       0       0       0       0
+   872 ;;      Totals:         3       0       0       0       0
+   873 ;;Total ram usage:        3 bytes
+   874 ;; Hardware stack levels used:    1
+   875 ;; Hardware stack levels required when called:    1
+   876 ;; This function calls:
+   877 ;;		_lcd_delay
+   878 ;; This function is called by:
+   879 ;;		_main
+   880 ;;		_lcd_init
+   881 ;; This function uses a non-reentrant model
+   882 ;;
+   883                           psect	text118
+   884                           	file	"C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+   885                           	line	58
+   886                           	global	__size_of_cmd
+   887  003E                     	__size_of_cmd	equ	__end_of_cmd-_cmd
+   888                           	
+   889  0675                     _cmd:	
+   890                           	opt	stack 6
+   891                           ; Regs used in _cmd: [wreg+status,2+status,0+pclath+cstack]
+   892                           ;cmd@a stored from wreg
+   893  0675  00F4               	movwf	(cmd@a)
+   894                           	line	59
+   895                           	
+   896  0676                     l2001:	
+   897                           ;pickeypad.c: 59: RD2=0;
+   898  0676  1283               	bcf	status, 5	;RP0=0, select bank0
+   899  0677  1303               	bcf	status, 6	;RP1=0, select bank0
+   900  0678  1108               	bcf	(66/8),(66)&7
+   901                           	line	60
+   902                           	
+   903  0679                     l2003:	
+   904                           ;pickeypad.c: 60: PORTD&=0x0F;
+   905  0679  300F               	movlw	(0Fh)
+   906  067A  00F2               	movwf	(??_cmd+0)+0
+   907  067B  0872               	movf	(??_cmd+0)+0,w
+   908  067C  0588               	andwf	(8),f	;volatile
+   909                           	line	61
+   910                           ;pickeypad.c: 61: PORTD|=(a&0xf0);
+   911  067D  0874               	movf	(cmd@a),w
+   912  067E  39F0               	andlw	0F0h
+   913  067F  00F2               	movwf	(??_cmd+0)+0
+   914  0680  0872               	movf	(??_cmd+0)+0,w
+   915  0681  0488               	iorwf	(8),f	;volatile
+   916                           	line	62
+   917                           	
+   918  0682                     l2005:	
+   919                           ;pickeypad.c: 62: RD3=1;
+   920  0682  1588               	bsf	(67/8),(67)&7
+   921                           	line	63
+   922                           	
+   923  0683                     l2007:	
+   924                           ;pickeypad.c: 63: lcd_delay();
+   925  0683  120A  118A  25E4   	fcall	_lcd_delay
+              120A  118A         
+   926                           	line	64
+   927                           	
+   928  0688                     l2009:	
+   929                           ;pickeypad.c: 64: RD3=0;
+   930  0688  1283               	bcf	status, 5	;RP0=0, select bank0
+   931  0689  1303               	bcf	status, 6	;RP1=0, select bank0
+   932  068A  1188               	bcf	(67/8),(67)&7
+   933                           	line	65
+   934                           	
+   935  068B                     l2011:	
+   936                           ;pickeypad.c: 65: lcd_delay();
+   937  068B  120A  118A  25E4   	fcall	_lcd_delay
+              120A  118A         
+   938                           	line	66
+   939                           ;pickeypad.c: 66: PORTD&=0x0f;
+   940  0690  300F               	movlw	(0Fh)
+   941  0691  00F2               	movwf	(??_cmd+0)+0
+   942  0692  0872               	movf	(??_cmd+0)+0,w
+   943  0693  1283               	bcf	status, 5	;RP0=0, select bank0
+   944  0694  1303               	bcf	status, 6	;RP1=0, select bank0
+   945  0695  0588               	andwf	(8),f	;volatile
+   946                           	line	67
+   947                           ;pickeypad.c: 67: PORTD|=(a<<4&0xf0);
+   948  0696  0874               	movf	(cmd@a),w
+   949  0697  00F2               	movwf	(??_cmd+0)+0
+   950  0698  3003               	movlw	(04h)-1
+   951  0699                     u2645:
+   952  0699  1003               	clrc
+   953  069A  0DF2               	rlf	(??_cmd+0)+0,f
+   954  069B  3EFF               	addlw	-1
+   955  069C  1D03               	skipz
+   956  069D  2E99               	goto	u2645
+   957  069E  1003               	clrc
+   958  069F  0D72               	rlf	(??_cmd+0)+0,w
+   959  06A0  39F0               	andlw	0F0h
+   960  06A1  00F3               	movwf	(??_cmd+1)+0
+   961  06A2  0873               	movf	(??_cmd+1)+0,w
+   962  06A3  0488               	iorwf	(8),f	;volatile
+   963                           	line	68
+   964                           	
+   965  06A4                     l2013:	
+   966                           ;pickeypad.c: 68: RD3=1;
+   967  06A4  1588               	bsf	(67/8),(67)&7
+   968                           	line	69
+   969                           	
+   970  06A5                     l2015:	
+   971                           ;pickeypad.c: 69: lcd_delay();
+   972  06A5  120A  118A  25E4   	fcall	_lcd_delay
+              120A  118A         
+   973                           	line	70
+   974                           	
+   975  06AA                     l2017:	
+   976                           ;pickeypad.c: 70: RD3=0;
+   977  06AA  1283               	bcf	status, 5	;RP0=0, select bank0
+   978  06AB  1303               	bcf	status, 6	;RP1=0, select bank0
+   979  06AC  1188               	bcf	(67/8),(67)&7
+   980                           	line	71
+   981                           	
+   982  06AD                     l2019:	
+   983                           ;pickeypad.c: 71: lcd_delay();
+   984  06AD  120A  118A  25E4   	fcall	_lcd_delay
+              120A  118A         
+   985                           	line	72
+   986                           	
+   987  06B2                     l714:	
+   988  06B2  0008               	return
+   989                           	opt stack 0
+   990                           GLOBAL	__end_of_cmd
+   991  06B3                     	__end_of_cmd:
+   992 ;; =============== function _cmd ends ============
+   993                           
+   994                           	signat	_cmd,4216
+   995                           	global	_lcd_delay
+   996                           psect	text119,local,class=CODE,delta=2
+   997                           global __ptext119
+   998  05E4                     __ptext119:
+   999                           
+  1000 ;; *************** function _lcd_delay *****************
+  1001 ;; Defined at:
+  1002 ;;		line 99 in file "C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+  1003 ;; Parameters:    Size  Location     Type
+  1004 ;;		None
+  1005 ;; Auto vars:     Size  Location     Type
+  1006 ;;  lcd_delay       2    0[COMMON] unsigned int 
+  1007 ;; Return value:  Size  Location     Type
+  1008 ;;		None               void
+  1009 ;; Registers used:
+  1010 ;;		wreg, status,2
+  1011 ;; Tracked objects:
+  1012 ;;		On entry : 0/0
+  1013 ;;		On exit  : 0/0
+  1014 ;;		Unchanged: 0/0
+  1015 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1016 ;;      Params:         0       0       0       0       0
+  1017 ;;      Locals:         2       0       0       0       0
+  1018 ;;      Temps:          0       0       0       0       0
+  1019 ;;      Totals:         2       0       0       0       0
+  1020 ;;Total ram usage:        2 bytes
+  1021 ;; Hardware stack levels used:    1
+  1022 ;; This function calls:
+  1023 ;;		Nothing
+  1024 ;; This function is called by:
+  1025 ;;		_cmd
+  1026 ;;		_dat
+  1027 ;; This function uses a non-reentrant model
+  1028 ;;
+  1029                           psect	text119
+  1030                           	file	"C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+  1031                           	line	99
+  1032                           	global	__size_of_lcd_delay
+  1033  001E                     	__size_of_lcd_delay	equ	__end_of_lcd_delay-_lcd_delay
+  1034                           	
+  1035  05E4                     _lcd_delay:	
+  1036                           	opt	stack 6
+  1037                           ; Regs used in _lcd_delay: [wreg+status,2]
+  1038                           	line	101
+  1039                           	
+  1040  05E4                     l1227:	
+  1041                           ;pickeypad.c: 100: unsigned int lcd_delay;
+  1042                           ;pickeypad.c: 101: for(lcd_delay=0;lcd_delay<=1000;lcd_delay++);
+  1043  05E4  01F0               	clrf	(lcd_delay@lcd_delay)
+  1044  05E5  01F1               	clrf	(lcd_delay@lcd_delay+1)
+  1045                           	
+  1046  05E6                     l1229:	
+  1047  05E6  3003               	movlw	high(03E9h)
+  1048  05E7  0271               	subwf	(lcd_delay@lcd_delay+1),w
+  1049  05E8  30E9               	movlw	low(03E9h)
+  1050  05E9  1903               	skipnz
+  1051  05EA  0270               	subwf	(lcd_delay@lcd_delay),w
+  1052  05EB  1C03               	skipc
+  1053  05EC  2DEE               	goto	u491
+  1054  05ED  2DEF               	goto	u490
+  1055  05EE                     u491:
+  1056  05EE  2DF1               	goto	l1233
+  1057  05EF                     u490:
+  1058  05EF  2E01               	goto	l728
+  1059                           	
+  1060  05F0                     l1231:	
+  1061  05F0  2E01               	goto	l728
+  1062                           	
+  1063  05F1                     l726:	
+  1064                           	
+  1065  05F1                     l1233:	
+  1066  05F1  3001               	movlw	low(01h)
+  1067  05F2  07F0               	addwf	(lcd_delay@lcd_delay),f
+  1068  05F3  1803               	skipnc
+  1069  05F4  0AF1               	incf	(lcd_delay@lcd_delay+1),f
+  1070  05F5  3000               	movlw	high(01h)
+  1071  05F6  07F1               	addwf	(lcd_delay@lcd_delay+1),f
+  1072  05F7  3003               	movlw	high(03E9h)
+  1073  05F8  0271               	subwf	(lcd_delay@lcd_delay+1),w
+  1074  05F9  30E9               	movlw	low(03E9h)
+  1075  05FA  1903               	skipnz
+  1076  05FB  0270               	subwf	(lcd_delay@lcd_delay),w
+  1077  05FC  1C03               	skipc
+  1078  05FD  2DFF               	goto	u501
+  1079  05FE  2E00               	goto	u500
+  1080  05FF                     u501:
+  1081  05FF  2DF1               	goto	l1233
+  1082  0600                     u500:
+  1083  0600  2E01               	goto	l728
+  1084                           	
+  1085  0601                     l727:	
+  1086                           	line	102
+  1087                           	
+  1088  0601                     l728:	
+  1089  0601  0008               	return
+  1090                           	opt stack 0
+  1091                           GLOBAL	__end_of_lcd_delay
+  1092  0602                     	__end_of_lcd_delay:
+  1093 ;; =============== function _lcd_delay ends ============
+  1094                           
+  1095                           	signat	_lcd_delay,88
+  1096                           	global	_key
+  1097                           psect	text120,local,class=CODE,delta=2
+  1098                           global __ptext120
+  1099  06F1                     __ptext120:
+  1100                           
+  1101 ;; *************** function _key *****************
+  1102 ;; Defined at:
+  1103 ;;		line 111 in file "C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+  1104 ;; Parameters:    Size  Location     Type
+  1105 ;;		None
+  1106 ;; Auto vars:     Size  Location     Type
+  1107 ;;		None
+  1108 ;; Return value:  Size  Location     Type
+  1109 ;;                  1    wreg      unsigned char 
+  1110 ;; Registers used:
+  1111 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  1112 ;; Tracked objects:
+  1113 ;;		On entry : 0/0
+  1114 ;;		On exit  : 0/0
+  1115 ;;		Unchanged: 0/0
+  1116 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1117 ;;      Params:         0       0       0       0       0
+  1118 ;;      Locals:         0       0       0       0       0
+  1119 ;;      Temps:          3       0       0       0       0
+  1120 ;;      Totals:         3       0       0       0       0
+  1121 ;;Total ram usage:        3 bytes
+  1122 ;; Hardware stack levels used:    1
+  1123 ;; This function calls:
+  1124 ;;		Nothing
+  1125 ;; This function is called by:
+  1126 ;;		_main
+  1127 ;; This function uses a non-reentrant model
+  1128 ;;
+  1129                           psect	text120
+  1130                           	file	"C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+  1131                           	line	111
+  1132                           	global	__size_of_key
+  1133  010F                     	__size_of_key	equ	__end_of_key-_key
+  1134                           	
+  1135  06F1                     _key:	
+  1136                           	opt	stack 7
+  1137                           ; Regs used in _key: [wreg-fsr0h+status,2+status,0]
+  1138                           	line	112
+  1139                           	
+  1140  06F1                     l1141:	
+  1141                           ;pickeypad.c: 112: PORTC=0X00;
+  1142  06F1  1283               	bcf	status, 5	;RP0=0, select bank0
+  1143  06F2  1303               	bcf	status, 6	;RP1=0, select bank0
+  1144  06F3  0187               	clrf	(7)	;volatile
+  1145                           	line	113
+  1146                           ;pickeypad.c: 113: while(RC4&&RC5&&RC6&&RC7);
+  1147  06F4  2EF5               	goto	l734
+  1148                           	
+  1149  06F5                     l735:	
+  1150                           	
+  1151  06F5                     l734:	
+  1152  06F5  1E07               	btfss	(60/8),(60)&7
+  1153  06F6  2EF8               	goto	u11
+  1154  06F7  2EF9               	goto	u10
+  1155  06F8                     u11:
+  1156  06F8  2F77               	goto	l739
+  1157  06F9                     u10:
+  1158                           	
+  1159  06F9                     l1143:	
+  1160  06F9  1E87               	btfss	(61/8),(61)&7
+  1161  06FA  2EFC               	goto	u21
+  1162  06FB  2EFD               	goto	u20
+  1163  06FC                     u21:
+  1164  06FC  2F77               	goto	l739
+  1165  06FD                     u20:
+  1166                           	
+  1167  06FD                     l1145:	
+  1168  06FD  1F07               	btfss	(62/8),(62)&7
+  1169  06FE  2F00               	goto	u31
+  1170  06FF  2F01               	goto	u30
+  1171  0700                     u31:
+  1172  0700  2F77               	goto	l739
+  1173  0701                     u30:
+  1174                           	
+  1175  0701                     l1147:	
+  1176  0701  1B87               	btfsc	(63/8),(63)&7
+  1177  0702  2F04               	goto	u41
+  1178  0703  2F05               	goto	u40
+  1179  0704                     u41:
+  1180  0704  2EF5               	goto	l734
+  1181  0705                     u40:
+  1182  0705  2F77               	goto	l739
+  1183                           	
+  1184  0706                     l737:	
+  1185  0706  2F77               	goto	l739
+  1186                           	
+  1187  0707                     l738:	
+  1188                           	line	114
+  1189                           ;pickeypad.c: 114: while(!RC4||!RC5||!RC6||!RC7) {
+  1190  0707  2F77               	goto	l739
+  1191                           	
+  1192  0708                     l740:	
+  1193                           	line	115
+  1194                           ;pickeypad.c: 115: RC0=0;
+  1195  0708  1007               	bcf	(56/8),(56)&7
+  1196                           	line	116
+  1197                           ;pickeypad.c: 116: RC1=RC2=RC3=1;
+  1198  0709  1587               	bsf	(59/8),(59)&7
+  1199  070A  1987               	btfsc	(59/8),(59)&7
+  1200  070B  2F0D               	goto	u51
+  1201  070C  2F11               	goto	u50
+  1202                           	
+  1203  070D                     u51:
+  1204  070D  1283               	bcf	status, 5	;RP0=0, select bank0
+  1205  070E  1303               	bcf	status, 6	;RP1=0, select bank0
+  1206  070F  1507               	bsf	(58/8),(58)&7
+  1207  0710  2F14               	goto	u64
+  1208  0711                     u50:
+  1209  0711  1283               	bcf	status, 5	;RP0=0, select bank0
+  1210  0712  1303               	bcf	status, 6	;RP1=0, select bank0
+  1211  0713  1107               	bcf	(58/8),(58)&7
+  1212  0714                     u64:
+  1213  0714  1907               	btfsc	(58/8),(58)&7
+  1214  0715  2F17               	goto	u61
+  1215  0716  2F1B               	goto	u60
+  1216                           	
+  1217  0717                     u61:
+  1218  0717  1283               	bcf	status, 5	;RP0=0, select bank0
+  1219  0718  1303               	bcf	status, 6	;RP1=0, select bank0
+  1220  0719  1487               	bsf	(57/8),(57)&7
+  1221  071A  2F1E               	goto	u74
+  1222  071B                     u60:
+  1223  071B  1283               	bcf	status, 5	;RP0=0, select bank0
+  1224  071C  1303               	bcf	status, 6	;RP1=0, select bank0
+  1225  071D  1087               	bcf	(57/8),(57)&7
+  1226  071E                     u74:
+  1227                           	line	117
+  1228                           ;pickeypad.c: 117: if(!RC4||!RC5||!RC6||!RC7) {
+  1229  071E  1E07               	btfss	(60/8),(60)&7
+  1230  071F  2F21               	goto	u81
+  1231  0720  2F22               	goto	u80
+  1232  0721                     u81:
+  1233  0721  2F2E               	goto	l743
+  1234  0722                     u80:
+  1235                           	
+  1236  0722                     l1149:	
+  1237  0722  1E87               	btfss	(61/8),(61)&7
+  1238  0723  2F25               	goto	u91
+  1239  0724  2F26               	goto	u90
+  1240  0725                     u91:
+  1241  0725  2F2E               	goto	l743
+  1242  0726                     u90:
+  1243                           	
+  1244  0726                     l1151:	
+  1245  0726  1F07               	btfss	(62/8),(62)&7
+  1246  0727  2F29               	goto	u101
+  1247  0728  2F2A               	goto	u100
+  1248  0729                     u101:
+  1249  0729  2F2E               	goto	l743
+  1250  072A                     u100:
+  1251                           	
+  1252  072A                     l1153:	
+  1253  072A  1B87               	btfsc	(63/8),(63)&7
+  1254  072B  2F2D               	goto	u111
+  1255  072C  2F2E               	goto	u110
+  1256  072D                     u111:
+  1257  072D  2F30               	goto	l741
+  1258  072E                     u110:
+  1259                           	
+  1260  072E                     l743:	
+  1261                           	line	118
+  1262                           ;pickeypad.c: 118: rowloc=0;
+  1263  072E  01FA               	clrf	(_rowloc)
+  1264                           	line	119
+  1265                           ;pickeypad.c: 119: break;
+  1266  072F  2F87               	goto	l744
+  1267                           	line	120
+  1268                           	
+  1269  0730                     l741:	
+  1270                           	line	121
+  1271                           ;pickeypad.c: 120: }
+  1272                           ;pickeypad.c: 121: RC1=0;RC0=1;
+  1273  0730  1087               	bcf	(57/8),(57)&7
+  1274  0731  1407               	bsf	(56/8),(56)&7
+  1275                           	line	122
+  1276                           ;pickeypad.c: 122: if(!RC4||!RC5||!RC6||!RC7) {
+  1277  0732  1E07               	btfss	(60/8),(60)&7
+  1278  0733  2F35               	goto	u121
+  1279  0734  2F36               	goto	u120
+  1280  0735                     u121:
+  1281  0735  2F43               	goto	l1161
+  1282  0736                     u120:
+  1283                           	
+  1284  0736                     l1155:	
+  1285  0736  1E87               	btfss	(61/8),(61)&7
+  1286  0737  2F39               	goto	u131
+  1287  0738  2F3A               	goto	u130
+  1288  0739                     u131:
+  1289  0739  2F43               	goto	l1161
+  1290  073A                     u130:
+  1291                           	
+  1292  073A                     l1157:	
+  1293  073A  1F07               	btfss	(62/8),(62)&7
+  1294  073B  2F3D               	goto	u141
+  1295  073C  2F3E               	goto	u140
+  1296  073D                     u141:
+  1297  073D  2F43               	goto	l1161
+  1298  073E                     u140:
+  1299                           	
+  1300  073E                     l1159:	
+  1301  073E  1B87               	btfsc	(63/8),(63)&7
+  1302  073F  2F41               	goto	u151
+  1303  0740  2F42               	goto	u150
+  1304  0741                     u151:
+  1305  0741  2F47               	goto	l745
+  1306  0742                     u150:
+  1307  0742  2F43               	goto	l1161
+  1308                           	
+  1309  0743                     l747:	
+  1310                           	line	123
+  1311                           	
+  1312  0743                     l1161:	
+  1313                           ;pickeypad.c: 123: rowloc=1;
+  1314  0743  01FA               	clrf	(_rowloc)
+  1315  0744  1403               	bsf	status,0
+  1316  0745  0DFA               	rlf	(_rowloc),f
+  1317                           	line	124
+  1318                           ;pickeypad.c: 124: break;
+  1319  0746  2F87               	goto	l744
+  1320                           	line	125
+  1321                           	
+  1322  0747                     l745:	
+  1323                           	line	126
+  1324                           ;pickeypad.c: 125: }
+  1325                           ;pickeypad.c: 126: RC2=0;RC1=1;
+  1326  0747  1107               	bcf	(58/8),(58)&7
+  1327  0748  1487               	bsf	(57/8),(57)&7
+  1328                           	line	127
+  1329                           ;pickeypad.c: 127: if(!RC4||!RC5||!RC6||!RC7) {
+  1330  0749  1E07               	btfss	(60/8),(60)&7
+  1331  074A  2F4C               	goto	u161
+  1332  074B  2F4D               	goto	u160
+  1333  074C                     u161:
+  1334  074C  2F5A               	goto	l1169
+  1335  074D                     u160:
+  1336                           	
+  1337  074D                     l1163:	
+  1338  074D  1E87               	btfss	(61/8),(61)&7
+  1339  074E  2F50               	goto	u171
+  1340  074F  2F51               	goto	u170
+  1341  0750                     u171:
+  1342  0750  2F5A               	goto	l1169
+  1343  0751                     u170:
+  1344                           	
+  1345  0751                     l1165:	
+  1346  0751  1F07               	btfss	(62/8),(62)&7
+  1347  0752  2F54               	goto	u181
+  1348  0753  2F55               	goto	u180
+  1349  0754                     u181:
+  1350  0754  2F5A               	goto	l1169
+  1351  0755                     u180:
+  1352                           	
+  1353  0755                     l1167:	
+  1354  0755  1B87               	btfsc	(63/8),(63)&7
+  1355  0756  2F58               	goto	u191
+  1356  0757  2F59               	goto	u190
+  1357  0758                     u191:
+  1358  0758  2F5F               	goto	l748
+  1359  0759                     u190:
+  1360  0759  2F5A               	goto	l1169
+  1361                           	
+  1362  075A                     l750:	
+  1363                           	line	128
+  1364                           	
+  1365  075A                     l1169:	
+  1366                           ;pickeypad.c: 128: rowloc=2;
+  1367  075A  3002               	movlw	(02h)
+  1368  075B  00F0               	movwf	(??_key+0)+0
+  1369  075C  0870               	movf	(??_key+0)+0,w
+  1370  075D  00FA               	movwf	(_rowloc)
+  1371                           	line	129
+  1372                           ;pickeypad.c: 129: break;
+  1373  075E  2F87               	goto	l744
+  1374                           	line	130
+  1375                           	
+  1376  075F                     l748:	
+  1377                           	line	131
+  1378                           ;pickeypad.c: 130: }
+  1379                           ;pickeypad.c: 131: RC3=0; RC2=1;
+  1380  075F  1187               	bcf	(59/8),(59)&7
+  1381  0760  1507               	bsf	(58/8),(58)&7
+  1382                           	line	132
+  1383                           ;pickeypad.c: 132: if(!RC4||!RC5||!RC6||!RC7){
+  1384  0761  1E07               	btfss	(60/8),(60)&7
+  1385  0762  2F64               	goto	u201
+  1386  0763  2F65               	goto	u200
+  1387  0764                     u201:
+  1388  0764  2F72               	goto	l1177
+  1389  0765                     u200:
+  1390                           	
+  1391  0765                     l1171:	
+  1392  0765  1E87               	btfss	(61/8),(61)&7
+  1393  0766  2F68               	goto	u211
+  1394  0767  2F69               	goto	u210
+  1395  0768                     u211:
+  1396  0768  2F72               	goto	l1177
+  1397  0769                     u210:
+  1398                           	
+  1399  0769                     l1173:	
+  1400  0769  1F07               	btfss	(62/8),(62)&7
+  1401  076A  2F6C               	goto	u221
+  1402  076B  2F6D               	goto	u220
+  1403  076C                     u221:
+  1404  076C  2F72               	goto	l1177
+  1405  076D                     u220:
+  1406                           	
+  1407  076D                     l1175:	
+  1408  076D  1B87               	btfsc	(63/8),(63)&7
+  1409  076E  2F70               	goto	u231
+  1410  076F  2F71               	goto	u230
+  1411  0770                     u231:
+  1412  0770  2F77               	goto	l739
+  1413  0771                     u230:
+  1414  0771  2F72               	goto	l1177
+  1415                           	
+  1416  0772                     l753:	
+  1417                           	line	133
+  1418                           	
+  1419  0772                     l1177:	
+  1420                           ;pickeypad.c: 133: rowloc=3;
+  1421  0772  3003               	movlw	(03h)
+  1422  0773  00F0               	movwf	(??_key+0)+0
+  1423  0774  0870               	movf	(??_key+0)+0,w
+  1424  0775  00FA               	movwf	(_rowloc)
+  1425                           	line	134
+  1426                           ;pickeypad.c: 134: break;
+  1427  0776  2F87               	goto	l744
+  1428                           	line	135
+  1429                           	
+  1430  0777                     l751:	
+  1431                           	line	136
+  1432                           	
+  1433  0777                     l739:	
+  1434                           	line	114
+  1435  0777  1E07               	btfss	(60/8),(60)&7
+  1436  0778  2F7A               	goto	u241
+  1437  0779  2F7B               	goto	u240
+  1438  077A                     u241:
+  1439  077A  2F08               	goto	l740
+  1440  077B                     u240:
+  1441                           	
+  1442  077B                     l1179:	
+  1443  077B  1E87               	btfss	(61/8),(61)&7
+  1444  077C  2F7E               	goto	u251
+  1445  077D  2F7F               	goto	u250
+  1446  077E                     u251:
+  1447  077E  2F08               	goto	l740
+  1448  077F                     u250:
+  1449                           	
+  1450  077F                     l1181:	
+  1451  077F  1F07               	btfss	(62/8),(62)&7
+  1452  0780  2F82               	goto	u261
+  1453  0781  2F83               	goto	u260
+  1454  0782                     u261:
+  1455  0782  2F08               	goto	l740
+  1456  0783                     u260:
+  1457                           	
+  1458  0783                     l1183:	
+  1459  0783  1F87               	btfss	(63/8),(63)&7
+  1460  0784  2F86               	goto	u271
+  1461  0785  2F87               	goto	u270
+  1462  0786                     u271:
+  1463  0786  2F08               	goto	l740
+  1464  0787                     u270:
+  1465                           	
+  1466  0787                     l744:	
+  1467                           	line	137
+  1468                           ;pickeypad.c: 135: }
+  1469                           ;pickeypad.c: 136: }
+  1470                           ;pickeypad.c: 137: if(RC4==0&&RC5!=0&&RC6!=0&&RC7!=0)
+  1471  0787  1A07               	btfsc	(60/8),(60)&7
+  1472  0788  2F8A               	goto	u281
+  1473  0789  2F8B               	goto	u280
+  1474  078A                     u281:
+  1475  078A  2F99               	goto	l754
+  1476  078B                     u280:
+  1477                           	
+  1478  078B                     l1185:	
+  1479  078B  1E87               	btfss	(61/8),(61)&7
+  1480  078C  2F8E               	goto	u291
+  1481  078D  2F8F               	goto	u290
+  1482  078E                     u291:
+  1483  078E  2F99               	goto	l754
+  1484  078F                     u290:
+  1485                           	
+  1486  078F                     l1187:	
+  1487  078F  1F07               	btfss	(62/8),(62)&7
+  1488  0790  2F92               	goto	u301
+  1489  0791  2F93               	goto	u300
+  1490  0792                     u301:
+  1491  0792  2F99               	goto	l754
+  1492  0793                     u300:
+  1493                           	
+  1494  0793                     l1189:	
+  1495  0793  1F87               	btfss	(63/8),(63)&7
+  1496  0794  2F96               	goto	u311
+  1497  0795  2F97               	goto	u310
+  1498  0796                     u311:
+  1499  0796  2F99               	goto	l754
+  1500  0797                     u310:
+  1501                           	line	138
+  1502                           	
+  1503  0797                     l1191:	
+  1504                           ;pickeypad.c: 138: colloc=0;
+  1505  0797  01F9               	clrf	(_colloc)
+  1506  0798  2FDB               	goto	l761
+  1507                           	line	139
+  1508                           	
+  1509  0799                     l754:	
+  1510                           ;pickeypad.c: 139: else if(RC4!=0&&RC5==0&&RC6!=0&&RC7!=0)
+  1511  0799  1E07               	btfss	(60/8),(60)&7
+  1512  079A  2F9C               	goto	u321
+  1513  079B  2F9D               	goto	u320
+  1514  079C                     u321:
+  1515  079C  2FAD               	goto	l756
+  1516  079D                     u320:
+  1517                           	
+  1518  079D                     l1193:	
+  1519  079D  1A87               	btfsc	(61/8),(61)&7
+  1520  079E  2FA0               	goto	u331
+  1521  079F  2FA1               	goto	u330
+  1522  07A0                     u331:
+  1523  07A0  2FAD               	goto	l756
+  1524  07A1                     u330:
+  1525                           	
+  1526  07A1                     l1195:	
+  1527  07A1  1F07               	btfss	(62/8),(62)&7
+  1528  07A2  2FA4               	goto	u341
+  1529  07A3  2FA5               	goto	u340
+  1530  07A4                     u341:
+  1531  07A4  2FAD               	goto	l756
+  1532  07A5                     u340:
+  1533                           	
+  1534  07A5                     l1197:	
+  1535  07A5  1F87               	btfss	(63/8),(63)&7
+  1536  07A6  2FA8               	goto	u351
+  1537  07A7  2FA9               	goto	u350
+  1538  07A8                     u351:
+  1539  07A8  2FAD               	goto	l756
+  1540  07A9                     u350:
+  1541                           	line	140
+  1542                           	
+  1543  07A9                     l1199:	
+  1544                           ;pickeypad.c: 140: colloc=1;
+  1545  07A9  01F9               	clrf	(_colloc)
+  1546  07AA  1403               	bsf	status,0
+  1547  07AB  0DF9               	rlf	(_colloc),f
+  1548  07AC  2FDB               	goto	l761
+  1549                           	line	141
+  1550                           	
+  1551  07AD                     l756:	
+  1552                           ;pickeypad.c: 141: else if(RC4!=0&&RC5!=0&&RC6==0&&RC7!=0)
+  1553  07AD  1E07               	btfss	(60/8),(60)&7
+  1554  07AE  2FB0               	goto	u361
+  1555  07AF  2FB1               	goto	u360
+  1556  07B0                     u361:
+  1557  07B0  2FC2               	goto	l758
+  1558  07B1                     u360:
+  1559                           	
+  1560  07B1                     l1201:	
+  1561  07B1  1E87               	btfss	(61/8),(61)&7
+  1562  07B2  2FB4               	goto	u371
+  1563  07B3  2FB5               	goto	u370
+  1564  07B4                     u371:
+  1565  07B4  2FC2               	goto	l758
+  1566  07B5                     u370:
+  1567                           	
+  1568  07B5                     l1203:	
+  1569  07B5  1B07               	btfsc	(62/8),(62)&7
+  1570  07B6  2FB8               	goto	u381
+  1571  07B7  2FB9               	goto	u380
+  1572  07B8                     u381:
+  1573  07B8  2FC2               	goto	l758
+  1574  07B9                     u380:
+  1575                           	
+  1576  07B9                     l1205:	
+  1577  07B9  1F87               	btfss	(63/8),(63)&7
+  1578  07BA  2FBC               	goto	u391
+  1579  07BB  2FBD               	goto	u390
+  1580  07BC                     u391:
+  1581  07BC  2FC2               	goto	l758
+  1582  07BD                     u390:
+  1583                           	line	142
+  1584                           	
+  1585  07BD                     l1207:	
+  1586                           ;pickeypad.c: 142: colloc=2;
+  1587  07BD  3002               	movlw	(02h)
+  1588  07BE  00F0               	movwf	(??_key+0)+0
+  1589  07BF  0870               	movf	(??_key+0)+0,w
+  1590  07C0  00F9               	movwf	(_colloc)
+  1591  07C1  2FDB               	goto	l761
+  1592                           	line	143
+  1593                           	
+  1594  07C2                     l758:	
+  1595                           ;pickeypad.c: 143: else if(RC4!=0&&RC5!=0&&RC6!=0&&RC7==0)
+  1596  07C2  1E07               	btfss	(60/8),(60)&7
+  1597  07C3  2FC5               	goto	u401
+  1598  07C4  2FC6               	goto	u400
+  1599  07C5                     u401:
+  1600  07C5  2FDB               	goto	l761
+  1601  07C6                     u400:
+  1602                           	
+  1603  07C6                     l1209:	
+  1604  07C6  1E87               	btfss	(61/8),(61)&7
+  1605  07C7  2FC9               	goto	u411
+  1606  07C8  2FCA               	goto	u410
+  1607  07C9                     u411:
+  1608  07C9  2FDB               	goto	l761
+  1609  07CA                     u410:
+  1610                           	
+  1611  07CA                     l1211:	
+  1612  07CA  1F07               	btfss	(62/8),(62)&7
+  1613  07CB  2FCD               	goto	u421
+  1614  07CC  2FCE               	goto	u420
+  1615  07CD                     u421:
+  1616  07CD  2FDB               	goto	l761
+  1617  07CE                     u420:
+  1618                           	
+  1619  07CE                     l1213:	
+  1620  07CE  1B87               	btfsc	(63/8),(63)&7
+  1621  07CF  2FD1               	goto	u431
+  1622  07D0  2FD2               	goto	u430
+  1623  07D1                     u431:
+  1624  07D1  2FDB               	goto	l761
+  1625  07D2                     u430:
+  1626                           	line	144
+  1627                           	
+  1628  07D2                     l1215:	
+  1629                           ;pickeypad.c: 144: colloc=3;
+  1630  07D2  3003               	movlw	(03h)
+  1631  07D3  00F0               	movwf	(??_key+0)+0
+  1632  07D4  0870               	movf	(??_key+0)+0,w
+  1633  07D5  00F9               	movwf	(_colloc)
+  1634  07D6  2FDB               	goto	l761
+  1635                           	
+  1636  07D7                     l760:	
+  1637  07D7  2FDB               	goto	l761
+  1638                           	line	145
+  1639                           	
+  1640  07D8                     l759:	
+  1641  07D8  2FDB               	goto	l761
+  1642                           	
+  1643  07D9                     l757:	
+  1644  07D9  2FDB               	goto	l761
+  1645                           	
+  1646  07DA                     l755:	
+  1647                           ;pickeypad.c: 145: while(RC4==0||RC5==0||RC6==0||RC7==0);
+  1648  07DA  2FDB               	goto	l761
+  1649                           	
+  1650  07DB                     l762:	
+  1651                           	
+  1652  07DB                     l761:	
+  1653  07DB  1E07               	btfss	(60/8),(60)&7
+  1654  07DC  2FDE               	goto	u441
+  1655  07DD  2FDF               	goto	u440
+  1656  07DE                     u441:
+  1657  07DE  2FDB               	goto	l761
+  1658  07DF                     u440:
+  1659                           	
+  1660  07DF                     l1217:	
+  1661  07DF  1E87               	btfss	(61/8),(61)&7
+  1662  07E0  2FE2               	goto	u451
+  1663  07E1  2FE3               	goto	u450
+  1664  07E2                     u451:
+  1665  07E2  2FDB               	goto	l761
+  1666  07E3                     u450:
+  1667                           	
+  1668  07E3                     l1219:	
+  1669  07E3  1F07               	btfss	(62/8),(62)&7
+  1670  07E4  2FE6               	goto	u461
+  1671  07E5  2FE7               	goto	u460
+  1672  07E6                     u461:
+  1673  07E6  2FDB               	goto	l761
+  1674  07E7                     u460:
+  1675                           	
+  1676  07E7                     l1221:	
+  1677  07E7  1F87               	btfss	(63/8),(63)&7
+  1678  07E8  2FEA               	goto	u471
+  1679  07E9  2FEB               	goto	u470
+  1680  07EA                     u471:
+  1681  07EA  2FDB               	goto	l761
+  1682  07EB                     u470:
+  1683  07EB  2FEC               	goto	l1223
+  1684                           	
+  1685  07EC                     l763:	
+  1686                           	line	146
+  1687                           	
+  1688  07EC                     l1223:	
+  1689                           ;pickeypad.c: 146: return (keypad[rowloc][colloc]);
+  1690  07EC  087A               	movf	(_rowloc),w
+  1691  07ED  00F0               	movwf	(??_key+0)+0
+  1692  07EE  3002               	movlw	02h
+  1693  07EF                     u485:
+  1694  07EF  1003               	clrc
+  1695  07F0  0DF0               	rlf	(??_key+0)+0,f
+  1696  07F1  3EFF               	addlw	-1
+  1697  07F2  1D03               	skipz
+  1698  07F3  2FEF               	goto	u485
+  1699  07F4  3020               	movlw	(_keypad)&0ffh
+  1700  07F5  0770               	addwf	0+(??_key+0)+0,w
+  1701  07F6  00F1               	movwf	(??_key+1)+0
+  1702  07F7  0879               	movf	(_colloc),w
+  1703  07F8  0771               	addwf	0+(??_key+1)+0,w
+  1704  07F9  00F2               	movwf	(??_key+2)+0
+  1705  07FA  0872               	movf	0+(??_key+2)+0,w
+  1706  07FB  0084               	movwf	fsr0
+  1707  07FC  1383               	bcf	status, 7	;select IRP bank0
+  1708  07FD  0800               	movf	indf,w
+  1709  07FE  2FFF               	goto	l764
+  1710                           	
+  1711  07FF                     l1225:	
+  1712                           	line	147
+  1713                           	
+  1714  07FF                     l764:	
+  1715  07FF  0008               	return
+  1716                           	opt stack 0
+  1717                           GLOBAL	__end_of_key
+  1718  0800                     	__end_of_key:
+  1719 ;; =============== function _key ends ============
+  1720                           
+  1721                           	signat	_key,89
+  1722                           	global	_keyinit
+  1723                           psect	text121,local,class=CODE,delta=2
+  1724                           global __ptext121
+  1725  05A6                     __ptext121:
+  1726                           
+  1727 ;; *************** function _keyinit *****************
+  1728 ;; Defined at:
+  1729 ;;		line 105 in file "C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+  1730 ;; Parameters:    Size  Location     Type
+  1731 ;;		None
+  1732 ;; Auto vars:     Size  Location     Type
+  1733 ;;		None
+  1734 ;; Return value:  Size  Location     Type
+  1735 ;;		None               void
+  1736 ;; Registers used:
+  1737 ;;		wreg, status,2, status,0
+  1738 ;; Tracked objects:
+  1739 ;;		On entry : 0/0
+  1740 ;;		On exit  : 0/0
+  1741 ;;		Unchanged: 0/0
+  1742 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1743 ;;      Params:         0       0       0       0       0
+  1744 ;;      Locals:         0       0       0       0       0
+  1745 ;;      Temps:          1       0       0       0       0
+  1746 ;;      Totals:         1       0       0       0       0
+  1747 ;;Total ram usage:        1 bytes
+  1748 ;; Hardware stack levels used:    1
+  1749 ;; This function calls:
+  1750 ;;		Nothing
+  1751 ;; This function is called by:
+  1752 ;;		_main
+  1753 ;; This function uses a non-reentrant model
+  1754 ;;
+  1755                           psect	text121
+  1756                           	file	"C:\Users\HP\OneDrive\Documents\PIC\KEYPAD\pickeypad.c"
+  1757                           	line	105
+  1758                           	global	__size_of_keyinit
+  1759  0009                     	__size_of_keyinit	equ	__end_of_keyinit-_keyinit
+  1760                           	
+  1761  05A6                     _keyinit:	
+  1762                           	opt	stack 7
+  1763                           ; Regs used in _keyinit: [wreg+status,2+status,0]
+  1764                           	line	106
+  1765                           	
+  1766  05A6                     l1137:	
+  1767                           ;pickeypad.c: 106: TRISC=0XF0;
+  1768  05A6  30F0               	movlw	(0F0h)
+  1769  05A7  1683               	bsf	status, 5	;RP0=1, select bank1
+  1770  05A8  1303               	bcf	status, 6	;RP1=0, select bank1
+  1771  05A9  0087               	movwf	(135)^080h	;volatile
+  1772                           	line	107
+  1773                           	
+  1774  05AA                     l1139:	
+  1775                           ;pickeypad.c: 107: OPTION_REG&=0X7F;
+  1776  05AA  307F               	movlw	(07Fh)
+  1777  05AB  00F0               	movwf	(??_keyinit+0)+0
+  1778  05AC  0870               	movf	(??_keyinit+0)+0,w
+  1779  05AD  0581               	andwf	(129)^080h,f	;volatile
+  1780                           	line	108
+  1781                           	
+  1782  05AE                     l731:	
+  1783  05AE  0008               	return
+  1784                           	opt stack 0
+  1785                           GLOBAL	__end_of_keyinit
+  1786  05AF                     	__end_of_keyinit:
+  1787 ;; =============== function _keyinit ends ============
+  1788                           
+  1789                           	signat	_keyinit,88
+  1790                           psect	text122,local,class=CODE,delta=2
+  1791                           global __ptext122
+  1792  0000                     __ptext122:
+  1793                           	global	btemp
+  1794  007E                     	btemp set 07Eh
+  1795                           
+  1796                           	DABS	1,126,2	;btemp
+  1797                           	global	wtemp0
+  1798  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.81 build 7503 
+Symbol Table                                                                                   Thu Oct 10 12:23:27 2024
+
+                   pc 0002                    u10 06F9                    u11 06F8                    u20 06FD  
+                  u21 06FC                    u30 0701                    u31 0700                    u40 0705  
+                  u41 0704                    u50 0711                    u51 070D                    u60 071B  
+                  u61 0717                    u80 0722                    u64 0714                    u81 0721  
+                  u90 0726                    u74 071E                    u91 0725                    fsr 0004  
+                 l711 0620                   l720 0634                   l721 0623                   l705 065C  
+                 l714 06B2                   l722 0641                   l706 0671                   l731 05AE  
+                 l723 0641                   l707 0672                   l740 0708                   l708 0672  
+                 l741 0730                   l717 06F0                   l750 075A                   l734 06F5  
+                 l726 05F1                   l751 0777                   l743 072E                   l735 06F5  
+                 l727 0601                   l760 07D7                   l744 0787                   l728 0601  
+                 l761 07DB                   l753 0772                   l745 0747                   l737 0706  
+                 l762 07DB                   l754 0799                   l738 0707                   l763 07EC  
+                 l755 07DA                   l747 0743                   l739 0777                   l764 07FF  
+                 l756 07AD                   l748 075F                   l757 07D9                   l758 07C2  
+                 l759 07D8                   _RC0 0038                   _RC1 0039                   _RC2 003A  
+                 _RC3 003B                   _RD2 0042                   _RC4 003C                   _RD3 0043  
+                 _RC5 003D                   u100 072A                   _RC6 003E                   u101 0729  
+                 _RC7 003F                   u110 072E                   u111 072D                   u200 0765  
+                 u120 0736                   u201 0764                   u121 0735                   u210 0769  
+                 u130 073A                   u211 0768                   u131 0739                   u300 0793  
+                 u220 076D                   u140 073E                   u301 0792                   u221 076C  
+                 u141 073D                   u310 0797                   u230 0771                   u150 0742  
+                 u311 0796                   u231 0770                   u151 0741                   u400 07C6  
+                 u320 079D                   u240 077B                   u160 074D                   u401 07C5  
+                 u321 079C                   u241 077A                   u161 074C                   u410 07CA  
+                 u330 07A1                   u250 077F                   u170 0751                   u411 07C9  
+                 u331 07A0                   u251 077E                   u171 0750                   u420 07CE  
+                 u340 07A5                   u260 0783                   u180 0755                   u500 0600  
+                 u421 07CD                   u341 07A4                   u261 0782                   u181 0754  
+                 u501 05FF                   u430 07D2                   u350 07A9                   u270 0787  
+                 u190 0759                   u431 07D1                   u351 07A8                   u271 0786  
+                 u191 0758                   u440 07DF                   u360 07B1                   u280 078B  
+                 u441 07DE                   u361 07B0                   u281 078A                   u450 07E3  
+                 u370 07B5                   u290 078F                   u451 07E2                   u371 07B4  
+                 u291 078E                   u460 07E7                   u380 07B9                   u461 07E6  
+                 u381 07B8                   u470 07EB                   u390 07BD                   u471 07EA  
+                 u391 07BC                   u490 05EF                   u491 05EE                   u485 07EF  
+                 _dat 06B3                   _cmd 0675                   _key 06F1                   fsr0 0004  
+                 indf 0000                  l1201 07B1                  l2001 0676                  l1211 07CA  
+                l1203 07B5                  l2011 068B                  l2003 0679                  l1221 07E7  
+                l1213 07CE                  l1205 07B9                  l1141 06F1                  l2013 06A4  
+                l2005 0682                  l2021 06B4                  l1223 07EC                  l1215 07D2  
+                l1207 07BD                  l1151 0726                  l1143 06F9                  l1231 05F0  
+                l2015 06A5                  l2007 0683                  l2031 06C9                  l2023 06B7  
+                l1137 05A6                  l1225 07FF                  l1217 07DF                  l1209 07C6  
+                l1161 0743                  l1153 072A                  l1145 06FD                  l1233 05F1  
+                l2017 06AA                  l2009 0688                  l2033 06E2                  l2025 06C0  
+                l2041 0602                  l1139 05AA                  l1219 07E3                  l1171 0765  
+                l1163 074D                  l1155 0736                  l1147 0701                  l1227 05E4  
+                l2019 06AD                  l2035 06E3                  l2027 06C1                  l2043 0622  
+                l2051 0642                  l1181 077F                  l1173 0769                  l1165 0751  
+                l1157 073A                  l1149 0722                  l1229 05E6                  l2037 06E8  
+                l2029 06C6                  l2045 0623                  l2061 065C                  l2053 0645  
+                ?_dat 0070                  l1191 0797                  l1183 0783                  l1175 076D  
+                l1167 0755                  l1159 073E                  l2039 06EB                  l2047 062F  
+                l2063 0662                  l2055 064A                  l1193 079D                  l1185 078B  
+                l1177 0772                  l1169 075A                  l2049 0634                  l2065 066A  
+                l2057 064F                  ?_cmd 0070                  l1195 07A1                  l1187 078F  
+                l1179 077B                  l2059 0655                  l1197 07A5                  l1189 0793  
+                l1199 07A9                  ?_key 0070                  STR_1 0009                  u2660 0640  
+                u2645 0699                  u2661 063F                  u2655 06D7                  dat@b 0074  
+                cmd@a 0074                  _main 0642                  _show 0621                  btemp 007E  
+                start 0000                 ??_dat 0072                 ??_cmd 0072                 ??_key 0070  
+               ?_main 0070                 ?_show 0070                 _PORTC 0007                 _PORTD 0008  
+               _TRISC 0087                 _TRISD 0088       __end_of_keyinit 05AF                 main@b 0078  
+               pclath 000A                 show@s 0076                 status 0003                 wtemp0 007E  
+        __end_of_main 0675          __end_of_show 0642    lcd_delay@lcd_delay 0070                ??_main 0077  
+              ??_show 0075      __end_of_lcd_init 0621                _colloc 0079                _keypad 0020  
+              _rowloc 007A             ??_keyinit 0070        __pcstackCOMMON 0070          __pidataBANK0 05AF  
+  __size_of_lcd_delay 001E            __pmaintext 0642             ?_lcd_init 0070     __end_of_lcd_delay 0602  
+        __size_of_dat 003E          __size_of_cmd 003E          __size_of_key 010F               _keyinit 05A6  
+          ??_lcd_init 0075  end_of_initialization 05E0               init_ram 05C3   start_initialization 05D0  
+         __end_of_dat 06F1           __end_of_cmd 06B3           __end_of_key 0800           __pdataBANK0 0020  
+         __pbssCOMMON 0079     __size_of_lcd_init 001F             __ptext120 06F1             __ptext121 05A6  
+           __ptext122 0000             __ptext115 0621             __ptext116 0602             __ptext117 06B3  
+           __ptext118 0675             __ptext119 05E4             _lcd_delay 05E4             __pstrings 0003  
+            ?_keyinit 0070            ?_lcd_delay 0070           __stringbase 0008             init_fetch 05BF  
+    __size_of_keyinit 0009              _lcd_init 0602         __size_of_main 0033         __size_of_show 0021  
+         ??_lcd_delay 0070             stringcode 0003            _OPTION_REG 0081              stringdir 0003  
+            stringtab 0003  
